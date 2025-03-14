@@ -10,7 +10,6 @@ const prisma = new PrismaClient();
 
 export async function POST(req: NextRequest) {
 
-
   const auth = authenticateRequest(req);
   if (!auth.authorized) {
 
@@ -25,9 +24,6 @@ export async function POST(req: NextRequest) {
     const userId = parseInt(formData.get('userId') as string);
     const file = formData.get('image') as File;
 
-
-
-
     if (!title || !publishYear || !userId || !file) {
  
       return NextResponse.json(
@@ -39,12 +35,8 @@ export async function POST(req: NextRequest) {
 
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
-
-
-
     const imageUrl = await uploadToS3(buffer, file.name, file.type);
-
-
+    
     const movie = await prisma.movie.create({
       data: {
         title,
