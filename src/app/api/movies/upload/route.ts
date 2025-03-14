@@ -4,7 +4,7 @@ import { uploadToS3 } from '@/utils/s3Uploader';
 import { authenticateRequest } from '@/middleware/authMiddleware';
 import { setCorsHeaders } from '@/middleware/cors';
 
-export const runtime = 'nodejs'; // Ensures correct execution environment for Buffer + AWS SDK
+export const runtime = 'nodejs'; 
 
 const prisma = new PrismaClient();
 
@@ -43,7 +43,6 @@ export async function POST(req: NextRequest) {
 
 
     const imageUrl = await uploadToS3(buffer, file.name, file.type);
-    console.log('✅ Image uploaded to S3:', imageUrl);
 
 
     const movie = await prisma.movie.create({
