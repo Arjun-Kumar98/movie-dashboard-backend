@@ -1,5 +1,3 @@
-// app/api/movies/update/route.ts
-
 import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import { uploadToS3 } from '@/utils/s3Uploader';
